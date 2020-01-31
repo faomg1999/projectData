@@ -1,9 +1,67 @@
 #include<stdio.h>
+#include<stdlib.h>
 void line();
 void intopost();
 void posttoin();
 void inputchar();
 void inputnum();
+void initialize_stack();
+void push(char);
+char pop();
+char stacktop();
+int checkpr(char);
+void checkoper(char);
+
+typedef struct nd{
+	char c;
+	struct nd *next;
+}node;
+node *top = NULL;
+
+void push(char x){
+	node *n = malloc(sizeof(node));
+	n->next = top;
+	top = n;
+	n->c = x;
+}
+
+char pop(){
+	char p;
+	node *n;
+	n = top;
+	top = top->next;
+	p = n->c;
+	free(n);
+	return p;
+}
+
+char stacktop(){
+	if(top == NULL)
+		return NULL;
+	else
+		return top->c;
+}
+
+int checkpr(char temp){
+	int pr;
+	if(temp == '*'||temp=='/')
+	pr=2;
+	else
+	pr=1;
+	return pr;
+}
+
+void checkoper(char ck){
+	if(stacktop()==NULL)
+		push(ck);
+	else{
+		if(checkpr(ck)<=checkpr(stacktop()))
+	while((checkpr(ck)<=checkpr(stacktop()))&&(stacktop()!=NULL))
+	printf("%c ",pop());
+	push(ck);
+	}
+}
+
 int main(){
 	int num;
 	line();
@@ -58,7 +116,16 @@ void posttoin(){
 }
 
 void intopost(){
-	printf("infix to postfix, ready to be edited!");
+	char ch;
+	while(ch != " "){
+		scanf("%c",ch);
+		if(isdigit(ch)||isalpha(ch))
+			printf("%c ",ch);
+		else
+			checkoper(ch);
+	}
+	while(stacktop()!=NULL)
+		printf("%c ",pop());	
 }
 
 void inputchar(){
@@ -68,3 +135,7 @@ void inputchar(){
 void inputnum(){
 	printf("postfix to infix with number input");
 }
+
+
+
+
