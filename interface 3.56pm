@@ -1,0 +1,36 @@
+#include<stdio.h>
+#include<stdlib.h>
+//-----------------------------interface----------------------------
+void header(){
+	int i,j,num;
+	printf("INFIX TO POSFIX OR POSFIX TO INFIX\n");
+	for(i = 1; i <= 3; i++){
+		for(j = 1 ; j <= 34 ; j++){
+			if(j > 2 && j <= 32){
+			printf(" ");
+			}
+		else
+			printf("|");	
+		}
+		printf("\n");
+	}
+	for(i = 1; i <= 34; i++){
+		printf("=");
+	}printf("\n");
+	do{printf("Choose infix to posfix (enter : 1)\nChoose posfix to infix (enter : 2)\nExit (enter : 3)\n\nEnter : ");
+		scanf("%d", &num);
+		printf("\n");
+	}while(num < 1 || num > 3);
+		if(num==3){
+			printf("\n\n==============Thankyou============\n");
+		}
+	else if(num==1){
+		//infixToposfix();
+		
+		}
+}
+//---------------------------------main----------------------------
+void main(){
+	header();
+	
+}
